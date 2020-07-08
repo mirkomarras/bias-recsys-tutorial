@@ -627,15 +627,15 @@ body.mobile-nav-active #mobile-nav-toggle {
 # Other Sections
 --------------------------------------------------------------*/
 
-#aims, #organizers, #resources, #objectives, #abstract, #topics, #dates, #submission, #committee, #program, #attending, #contacts {
+#aims, #organizers, #structure, #resources, #objectives, #abstract, #topics, #dates, #submission, #committee, #program, #attending, #contacts {
   padding: 60px 0 30px 0;
 }
 
-#aims .container-fluid, #organizers .container-fluid, #resources .container-fluid, #objectives .container-fluid, #abstract .container-fluid, #topics .container-fluid, #dates .container-fluid, #submission .container-fluid, #committee .container-fluid, #program .container-fluid, #attending .container-fluid, #contacts .container-fluid {
+#aims .container-fluid, #organizers .container-fluid, #structure .container-fluid,  #resources .container-fluid, #objectives .container-fluid, #abstract .container-fluid, #topics .container-fluid, #dates .container-fluid, #submission .container-fluid, #committee .container-fluid, #program .container-fluid, #attending .container-fluid, #contacts .container-fluid {
   margin-bottom: 3px;
 }
 
-#aims > div > div > ul, #organizers > div > div > ul, #resources > div > div > ul, #objectives > div > div > ul, #abstract > div > div > ul, #topics > div > div > ul, #dates > div > div > ul, #submission > div > div > ul, #committee > div > div > ul, #program > div > div > ul, #attending > div > div > ul, #contacts > div > div > ul {
+#aims > div > div > ul, #organizers > div > div > ul, #structure > div > div > ul, #resources > div > div > ul, #objectives > div > div > ul, #abstract > div > div > ul, #topics > div > div > ul, #dates > div > div > ul, #submission > div > div > ul, #committee > div > div > ul, #program > div > div > ul, #attending > div > div > ul, #contacts > div > div > ul {
     text-align: left;
     padding: 0;
     margin: 10px auto 30px auto;
