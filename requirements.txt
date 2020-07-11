@@ -5,4 +5,4 @@ numpy
 pandas
 scikit-learn
 scipy
-tensorflow-gpu==2.0
+tensorflow-gpu==2.0.1
