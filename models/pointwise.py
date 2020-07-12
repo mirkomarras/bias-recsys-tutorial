@@ -9,10 +9,7 @@ from helpers.instances_creator import generator
 from helpers.utils import load_obj, save_obj
 from models.model import Model
 
-'''
-He Xiangnan et al. Neural Collaborative Filtering. In WWW 2017.
-'''
-class NeuMF(Model):
+class PointWise(Model):
 
     def __init__(self, users, items, observed_relevance, unobserved_relevance, category_per_item, item_field, user_field, rating_field):
         super().__init__(users, items, observed_relevance, unobserved_relevance, category_per_item, item_field, user_field, rating_field)
@@ -46,27 +43,24 @@ class NeuMF(Model):
 
         return model
 
-    def train(self, filepath, no_epochs=20, no_batches=1024, lr=0.001, no_factors=10, no_negatives=10, gen_mode='point', val_split=0.1):
-        base_path = filepath.split(os.path.sep)[-1].split('_')[0] + '_' + filepath.split(os.path.sep)[-1].split('_')[1]
-        instance_path = './data/instances/' + base_path + '_' + gen_mode + '_inst.pkl'
-
+    def train(self, no_epochs=20, batches=1024, lr=0.001, no_factors=10, no_negatives=10, gen_mode='point', val_split=0.1):
         print('Generating training instances', 'of type', gen_mode)
         x, y = generator(self.observed_relevance, self.categories, self.no_categories, self.category_per_item, self.categories_per_user, no_negatives=no_negatives, gen_mode=gen_mode)
 
-        print('> Making training -', 'Epochs', no_epochs, 'Batch Size', no_batches, 'Learning Rate', lr, 'Factors', no_factors, 'Negatives', no_negatives, 'Mode', gen_mode)
+        print('Performing training -', 'Epochs', no_epochs, 'Batch Size', batches, 'Learning Rate', lr, 'Factors', no_factors, 'Negatives', no_negatives, 'Mode', gen_mode)
         self.model = self.__get_model(no_factors, np.array([64, 32, 16, 8], np.int32))
         self.model.compile(optimizer=tf.keras.optimizers.Adam(lr=lr), loss='binary_crossentropy')
 
-        user_input, user_attr, item_i_input, item_i_attr, item_j_input, item_j_attr = x
+        user_input, item_i_input, _ = x
         labels = y
-        callbacks = [tf.keras.callbacks.EarlyStopping(monitor='val_loss', patience=2, verbose=1), tf.keras.callbacks.ModelCheckpoint(filepath=filepath, save_best_only=True, monitor='val_loss', verbose=1)]
-        self.history = self.model.fit([np.array(user_input), np.array(item_i_input)], np.array(labels), validation_split=val_split, batch_size=no_batches, epochs=no_epochs, verbose=1, shuffle=True, callbacks=callbacks).history
+        callbacks = [tf.keras.callbacks.EarlyStopping(monitor='val_loss', patience=2, verbose=1)]
+        self.model.fit([np.array(user_input), np.array(item_i_input)], np.array(labels), validation_split=val_split, batch_size=batches, epochs=no_epochs, verbose=1, shuffle=True, callbacks=callbacks)
 
     def predict(self):
         self.predicted_relevance = np.zeros((self.no_users, self.no_items))
         for user_id in self.users:
             if (user_id % 100) == 0:
-                print('\r> Making predictions for user', user_id, '/', self.no_users, end='')
+                print('\rComputing predictions for user', user_id, '/', self.no_users, end='')
             user_data = np.array((np.ones(self.no_items)*user_id).tolist())
             item_data = np.array(self.items)
             self.predicted_relevance[user_id] = np.squeeze(self.model.predict([user_data, item_data]).tolist())

@@ -59,9 +59,7 @@ def fixed_timestamp(interactions, min_train=4, min_test=1, min_time=None, max_ti
 
     traintest = pd.concat([train, test])
 
-    print('> Bast timestamp found at', best_timestamp)
-    print('> Mean number of train ratings per learner:', np.mean(traintest[traintest['set']=='train'].groupby([user_field]).count()[item_field].values))
-    print('> Mean number of test ratings per learner:', np.mean(traintest[traintest['set']=='test'].groupby([user_field]).count()[item_field].values))
+    print('Bast timestamp found at', best_timestamp)
 
     return traintest
 
@@ -93,9 +91,6 @@ def user_timestamp(interactions, split=0.80, min_samples=10, user_field='user_id
     traintest[user_field] = traintest[user_field].astype('category').cat.codes
     traintest[item_field] = traintest[item_field].astype('category').cat.codes
 
-    print('> Mean number of train ratings per learner:', np.mean(traintest[traintest['set']=='train'].groupby([user_field]).count()[item_field].values))
-    print('> Mean number of test ratings per learner:', np.mean(traintest[traintest['set']=='test'].groupby([user_field]).count()[item_field].values))
-
     return traintest
 
 def user_random(interactions, split=0.80, min_samples=10, user_field='user_id', item_field='item_id'):
@@ -126,54 +121,4 @@ def user_random(interactions, split=0.80, min_samples=10, user_field='user_id', 
     traintest[user_field] = traintest[user_field].astype('category').cat.codes
     traintest[item_field] = traintest[item_field].astype('category').cat.codes
 
-    print('> Mean number of train ratings per learner:', np.mean(traintest[traintest['set']=='train'].groupby([user_field]).count()[item_field].values))
-    print('> Mean number of test ratings per learner:', np.mean(traintest[traintest['set']=='test'].groupby([user_field]).count()[item_field].values))
-
     return traintest
-
-if __name__ == "__main__":
-
-    parser = argparse.ArgumentParser()
-
-    parser.add_argument('--dataset', dest='dataset', default='coco', type=str, action='store')
-    parser.add_argument('--method', dest='method', default='per_user_timestamp', type=str, action='store')
-    parser.add_argument('--min_train', dest='min_train', default=8, type=int, action='store')
-    parser.add_argument('--min_test', dest='min_test', default=2, type=int, action='store')
-    parser.add_argument('--min_time', dest='min_time', default=None, type=int, action='store')
-    parser.add_argument('--max_time', dest='max_time', default=None, type=int, action='store')
-    parser.add_argument('--step_time', dest='step_time', default=1000, type=int, action='store')
-    parser.add_argument('--user_field', dest='user_field', default='user_id', type=str, action='store')
-    parser.add_argument('--item_field', dest='item_field', default='item_id', type=str, action='store')
-    parser.add_argument('--rating_field', dest='rating_field', default='rating', type=str, action='store')
-    parser.add_argument('--time_field', dest='time_field', default='timestamp', type=str, action='store')
-    parser.add_argument('--percentage', dest='percentage', default=0.80, type=float, action='store')
-
-    args = parser.parse_args()
-
-    print('Parameters summary')
-    print('> Dataset:', args.dataset)
-    print('> Method:', args.method)
-    print('> Mininum train user samples:', args.min_train)
-    print('> Mininum test user samples:', args.min_test)
-    print('> Minimum timestamp:', args.min_time)
-    print('> Maximum timestamp:', args.max_time)
-    print('> Timestamp step:', args.step_time)
-    print('> User field:', args.user_field)
-    print('> Item field:', args.item_field)
-    print('> Rating field:', args.rating_field)
-    print('> Time field:', args.time_field)
-    print('> Train percentage:', args.percentage)
-
-    print('Step 1: Load interactions')
-    data = pd.read_csv('./data/datasets/' + args.dataset + '.csv', encoding='utf8')
-    print(data.head())
-
-    print('Step 2: Splitting train and test')
-    if args.method == 'uftime':
-        traintest = fixed_timestamp(interactions=data, min_train=args.min_train, min_test=args.min_test, min_time=args.min_time, max_time=args.max_time, step_time=args.step_time, user_field=args.user_field, item_field=args.item_field, time_field=args.time_field, rating_field=args.rating_field)
-    elif args.method == 'utime':
-        traintest = user_timestamp(interactions=data, split=args.percentage, min_samples=args.min_train+args.min_test, user_field=args.user_field, item_field=args.item_field, time_field=args.time_field)
-    elif args.method == 'urandom':
-        traintest = user_random(interactions=data, split=args.percentage, min_samples=args.min_train+args.min_test, user_field=args.user_field, item_field=args.item_field)
-    else:
-        raise NotImplementedError('The split method ' + args.method + 'is not supported.')

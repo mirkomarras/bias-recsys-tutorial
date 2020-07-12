@@ -11,7 +11,7 @@ from helpers.utils import save_obj, get_bpr_loss
 class Model:
 
     def __init__(self, users, items, observed_relevance, unobserved_relevance, category_per_item, item_field, user_field, rating_field):
-        print('> Initializing user, item, and categories lists')
+        print('Initializing user, item, and categories lists')
         self.name = 'Unknown'
         self.users = users
         self.items = items
@@ -20,17 +20,17 @@ class Model:
         self.no_items = len(items)
         self.no_categories = len(self.categories)
         self.no_interactions = len(observed_relevance.index)
-        print('> Initializing observed, unobserved, and predicted relevance scores')
+        print('Initializing observed, unobserved, and predicted relevance scores')
         self.observed_relevance = self.__get_feedback(observed_relevance, item_field, user_field, rating_field)
         self.unobserved_relevance = self.__get_feedback(unobserved_relevance, item_field, user_field, rating_field)
         self.predicted_relevance = None
-        print('> Initializing item popularity lists')
+        print('Initializing item popularity lists')
         self.item_popularity = np.array([len(observed_relevance[observed_relevance[item_field]==item_id].index) for item_id in items])
-        print('> Initializing category per item')
+        print('Initializing category per item')
         self.category_per_item = category_per_item
-        print('> Initializing category preference per user')
+        print('Initializing category preference per user')
         self.categories_per_user = self.__get_representation()
-        print('> Initializing metrics')
+        print('Initializing metrics')
         self.metrics = None
 
     def __get_feedback(self, feedback, item_field, user_field, rating_field):
@@ -65,11 +65,11 @@ class Model:
     def predict(self):
         self.predicted_relevance = None
 
-    def train(self, filepath):
+    def train(self):
         self.model = None
         self.history = None
 
-    def test(self, cutoffs=np.array([10]), gains='exponential'):
+    def test(self, item_group=None, cutoffs=np.array([10]), gains='exponential'):
         self.metrics = {}
         self.metrics['precision'] = np.zeros((len(cutoffs),self.no_users))
         self.metrics['recall'] = np.zeros((len(cutoffs), self.no_users))
@@ -80,10 +80,14 @@ class Model:
         self.metrics['novelty'] = np.zeros((len(cutoffs), self.no_users))
         self.metrics['item_coverage'] = np.zeros((len(cutoffs), self.no_items))
 
+        if item_group is not None:
+            self.metrics['visibility'] = np.zeros((len(cutoffs), self.no_users))
+            self.metrics['exposure'] = np.zeros((len(cutoffs), self.no_users))
+
         for user_id, (user_observed, user_unobserved, user_predicted) in enumerate(zip(self.observed_relevance, self.unobserved_relevance, self.predicted_relevance)):
 
             if (user_id % 1000) == 0:
-                print('\r> Making metrics for user', user_id, '/', self.no_users, end='')
+                print('\rComputing metrics for user', user_id, '/', self.no_users, end='')
 
             if user_id < self.no_users:
 
@@ -102,10 +106,16 @@ class Model:
                     self.metrics['hit'][index_k, user_id] = (1 if len(set(top_k) & set(test_pids)) > 0 else 0)
                     self.metrics['mean_popularity'][index_k,user_id] = np.mean(self.item_popularity[top_k])
                     for pos, item_id in enumerate(top_k):
+                        if item_group is not None:
+                            self.metrics['exposure'][index_k, user_id] += (1/math.log(pos+1+1) if item_group[item_id] == 0 else 0)
+                            self.metrics['visibility'][index_k,user_id] += (1-item_group[item_id])
                         self.metrics['item_coverage'][index_k,item_id] += 1
                         self.metrics['novelty'][index_k,user_id] += -math.log(self.item_popularity[item_id] / (self.no_users) + sys.float_info.epsilon, 2)
                     self.metrics['novelty'][index_k,user_id] = self.metrics['novelty'][index_k,user_id] / k
                     self.metrics['diversity'][index_k,user_id] = len(np.unique([self.category_per_item[item_id] for item_id in top_k])) / self.no_categories
+                    if item_group is not None:
+                        self.metrics['exposure'][index_k, user_id] /= np.sum([1/math.log(pos+1+1) for pos in range(k)])
+                        self.metrics['visibility'][index_k, user_id] /= k
 
     def show_metrics(self, index_k=0):
         precision = round(np.mean([v for v in self.metrics['precision'][index_k, :self.no_users]]), 4)
@@ -117,7 +127,13 @@ class Model:
         novelty = round(np.mean([v for v in self.metrics['novelty'][index_k, :self.no_users]]), 4)
         item_coverage = round(len([1 for m in self.metrics['item_coverage'][index_k] if m > 0]) / self.no_items, 2)
         user_coverage = round(len([1 for v in self.metrics['precision'][index_k, :self.no_users] if v != 0]) / self.no_users, 4)
-        print(' Precision:', precision, '\n', 'Recall:', recall, '\n', 'NDCG:', ndcg, '\n', 'Hit Rate:', hit, '\n', 'Avg Popularity:', avgpop, '\n', 'Category Diversity:', diversity, '\n', 'Novelty:', novelty, '\n', 'Item Coverage:', item_coverage, '\n', 'User Coverage:', user_coverage)
+        print('Precision:', precision, '\nRecall:', recall, '\nNDCG:', ndcg, '\nHit Rate:', hit, '\nAvg Popularity:', avgpop, '\nCategory Diversity:', diversity, '\nNovelty:', novelty, '\nItem Coverage:', item_coverage, '\nUser Coverage:', user_coverage)
+        if 'exposure' in self.metrics:
+            exp = round(np.mean(self.metrics['exposure'][index_k, :self.no_users]), 4)
+            print('Minority Exposure:', exp)
+        if 'visibility' in self.metrics:
+            vis = round(np.mean(self.metrics['visibility'][index_k, :self.no_users]), 4)
+            print('Minority Visibility:', vis)
 
     def print(self):
         if self.model:
