@@ -65,7 +65,7 @@ class PairWise(Model):
                 for t, (u, i, j) in enumerate(zip(user_input_val, item_i_input_val, item_j_input_val)):
                     auc_scores.append(1 if np.dot(user_matrix[u], item_matrix[i]) > np.dot(user_matrix[u], item_matrix[j]) else 0)
                     if (t % 1000) == 0:
-                        print('\rValidation accuracy:', auc_scores.count(1) / len(auc_scores), '(Sample', t, 'of', len(val_instance_indexes), ')', end='')
+                        print('\rValidation accuracy:', auc_scores.count(1) / len(auc_scores), '(Sample', t, 'of', str(len(val_instance_indexes)) + ')', end='')
                 print()
                 if (auc_scores.count(1) / len(auc_scores)) < best_auc_score:
                     break
