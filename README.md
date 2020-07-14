@@ -59,7 +59,7 @@ Then, we will show how to setup and perform a post-processing mitigation approac
 
 This notebook will consider the directors of movies in Movielens 1M as the item providers and 
 investigates how unfairness based on gender groups affects providers' group visibility and 
-exposure with respect to their representation in the item catalog. Then, we introduce an 
+exposure with respect to their representation in the item catalog. Then, we introduce a
 pre-processing strategy that upsamples interations involving items of a minority group to 
 improve fairness, while resulting in a small loss in utility. 
 
