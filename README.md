@@ -11,7 +11,57 @@ A Python toolbox for experimenting with data and algorithmic bias in recommender
 
 ## Installation
 
+Install Python (>=3.6):
+```
+sudo apt-get update
+sudo apt-get install python3.6
+```
+
+Clone this repository:
+```
+git clone https://github.com/mirkomarras/bias-recsys-tutorial.git
+```
+
+Install the requirements:
+
+```
+cd bias-recsys-tutorial
+pip install -r requirements.txt
+```
+
 ## Getting Started
+
+#### Notebook 1: Design and evaluation of a recommendation algorithm [[Colab link]](https://colab.research.google.com/github/mirkomarras/bias-recsys-tutorial/blob/master/notebooks/model_setup.ipynb)
+In this notebook, we become familiar with the Python recommendation toolbox, in the simplest 
+possible way. First, we setup the working environment in GDrive. Then, we go through the 
+experimental pipeline, by:
+
+- loading the Movielens 1M dataset;
+- performing a train-test splitting;
+- creating a pointwise / pairwise / random / mostpop recommendation object;
+- training the model (if applicable);
+- computing the user-item relevance matrix;
+- calculating some of the recommendation metrics (e.g., NDCG, Item Coverage, Diversity, Novelty).
+
+The trained models, together with the partial computation we will save (e.g., user-item relevance 
+matrix or metrics), will be the starting point of the investigation and the treatment covered by 
+the other Jupyter notebooks.
+
+#### Notebook 2: Investigation on item popularity bias [[Colab link]](https://colab.research.google.com/github/mirkomarras/bias-recsys-tutorial/blob/master/notebooks/item_popularity_bias.ipynb)
+
+This notebook will outline a short study of item popularity in recommender systems. We assume 
+that the number of ratings is a proxy of the popularity of the item. We calculate the popularity 
+of each item and we sort items in a dataframe by decreasing popularity. Then, we will compare 
+the characteristics of the items recommended by pairwise, pointwise, random and mostpop strategies.
+Finally, we will show how to setup and perform a post-processing mitigation approach. 
+
+#### Notebook 3: Investigation on item provider fairness [[Colab link]](https://colab.research.google.com/github/mirkomarras/bias-recsys-tutorial/blob/master/notebooks/item_provider_fairness.ipynb)
+
+This notebook will consider the directors of movies in Movielens 1M as the item providers and 
+investigates how unfairness based on gender groups affects providers' group visibility and 
+exposure with respect to their representation in the item catalog. We also showcase an 
+umsampling strategy that upsamples interations involving items of a minority group to 
+improve fairness.
 
 ## Contribution
 This code is provided for educational purposes and aims to facilitate reproduction of our results, and further research 
