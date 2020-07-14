@@ -1,13 +1,13 @@
-# Toolbox: Hands on Data anf Algorithmic Bias in Reccommender Systems
+# Toolbox: Hands on Data and Algorithmic Bias in Reccommender Systems
 [![Build Status](https://travis-ci.org/pages-themes/cayman.svg?branch=master)](https://travis-ci.org/pages-themes/cayman)
 [![GitHub version](https://badge.fury.io/gh/boennemann%2Fbadges.svg)](http://badge.fury.io/gh/boennemann%2Fbadges)
 [![Dependency Status](https://david-dm.org/boennemann/badges.svg)](https://david-dm.org/boennemann/badges)
 [![Open Source Love](https://badges.frapsoft.com/os/gpl/gpl.svg?v=102)](https://github.com/ellerbrock/open-source-badge/)
 
-[Ludovico Boratto](https://www.ludovicoboratto.com/)<sup>2</sup> and [Mirko Marras](https://www.mirkomarras.com/)<sup>1</sup>
-<br/><sup>1</sup> University of Cagliari, Italy <sup>2</sup> EURECAT, Spain
+[Ludovico Boratto](https://www.ludovicoboratto.com/)<sup>1</sup> and [Mirko Marras](https://www.mirkomarras.com/)<sup>2</sup>
+<br/><sup>1</sup> EURECAT, Spain<sup>2</sup> University of Cagliari, Italy 
 
-A Python toolbox for experimenting with ata and algorithmic bias in recommender systems. 
+A Python toolbox for experimenting with data and algorithmic bias in recommender systems. 
 
 ## Installation
 
