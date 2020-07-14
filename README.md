@@ -5,7 +5,8 @@
 [![Open Source Love](https://badges.frapsoft.com/os/gpl/gpl.svg?v=102)](https://github.com/ellerbrock/open-source-badge/)
 
 [Ludovico Boratto](https://www.ludovicoboratto.com/)<sup>1</sup> and [Mirko Marras](https://www.mirkomarras.com/)<sup>2</sup>
-<br/><sup>1</sup> EURECAT, Spain<sup>2</sup> University of Cagliari, Italy 
+<br/><sup>1</sup> EURECAT, Spain<br/>
+<sup>2</sup> University of Cagliari, Italy 
 
 A Python toolbox for experimenting with data and algorithmic bias in recommender systems. 
 
@@ -50,18 +51,17 @@ the other Jupyter notebooks.
 #### Notebook 2: Investigation on item popularity bias [[Colab link]](https://colab.research.google.com/github/mirkomarras/bias-recsys-tutorial/blob/master/notebooks/item_popularity_bias.ipynb)
 
 This notebook will outline a short study of item popularity in recommender systems. We assume 
-that the number of ratings is a proxy of the popularity of the item. We calculate the popularity 
-of each item and we sort items in a dataframe by decreasing popularity. Then, we will compare 
+that the number of ratings is a proxy of the popularity of the item. First, we will compare 
 the characteristics of the items recommended by pairwise, pointwise, random and mostpop strategies.
-Finally, we will show how to setup and perform a post-processing mitigation approach. 
+Then, we will show how to setup and perform a post-processing mitigation approach against popularity. 
 
 #### Notebook 3: Investigation on item provider fairness [[Colab link]](https://colab.research.google.com/github/mirkomarras/bias-recsys-tutorial/blob/master/notebooks/item_provider_fairness.ipynb)
 
 This notebook will consider the directors of movies in Movielens 1M as the item providers and 
 investigates how unfairness based on gender groups affects providers' group visibility and 
-exposure with respect to their representation in the item catalog. We also showcase an 
-umsampling strategy that upsamples interations involving items of a minority group to 
-improve fairness.
+exposure with respect to their representation in the item catalog. Then, we introduce an 
+pre-processing strategy that upsamples interations involving items of a minority group to 
+improve fairness, while resulting in a small loss in utility. 
 
 ## Contribution
 This code is provided for educational purposes and aims to facilitate reproduction of our results, and further research 
