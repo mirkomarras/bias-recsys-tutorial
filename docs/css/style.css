@@ -655,6 +655,10 @@ body.mobile-nav-active #mobile-nav-toggle {
     width: 47%;
 }
 
+#organizers img {
+  border-radius: 50%;
+}
+
 /*--------------------------------------------------------------
 # Responsive Media Queries
 --------------------------------------------------------------*/
