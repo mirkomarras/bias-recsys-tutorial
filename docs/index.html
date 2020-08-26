@@ -151,76 +151,86 @@
 			  <table class="table">
 				  <thead>
 					<tr>
-					  <th scope="col">Timing</th>
+					  <th scope="col" class="time">Timing</th>
 					  <th scope="col">Content</th>
 					</tr>
 				  </thead>
 				  <tbody>
 					<tr>
-					  <th scope="row"><strong>5 mins</strong></th>
+					  <th scope="row" class="time"><strong>5 mins</strong></th>
 					  <td><strong>Welcome and Presenters' Introduction</strong></td>
 					</tr>
 					<tr>
-					  <th scope="row"><strong>150 mins</strong></th>
+					  <th scope="row" class="time"><strong>150 mins</strong></th>
 					  <td><strong>Session I: Foundations</strong></td>
 					</tr>
 					<tr>
-					  <th scope="row">10 mins</th>
-					  <td>Recommendation Principles</td>
-                      <ul>
-                          <li><strong>Recommendation principles</strong>. To introduce the problems associated to algorithmic bias, we will present the recommendation task as the  generation of the most effective personalized ranking for a user, as in modern recommender systems.</li>
-                          <li><strong>Multi-sided recommendation aspects</strong>. Recommender systems have an impact on multiple actors, namely consumers, providers, system's owners. We will present these actors and the phases of the recommendation process where they  have a role (design, algorithm, and evaluation).</li>
-                      </ul>
+					  <th scope="row" class="time">10 mins</th>
+					  <td>
+                          Recommendation Principles
+                          <ul>
+                              <li><strong>Recommendation principles</strong>. To introduce the problems associated to algorithmic bias, we will present the recommendation task as the  generation of the most effective personalized ranking for a user, as in modern recommender systems.</li>
+                              <li><strong>Multi-sided recommendation aspects</strong>. Recommender systems have an impact on multiple actors, namely consumers, providers, system's owners. We will present these actors and the phases of the recommendation process where they  have a role (design, algorithm, and evaluation).</li>
+                          </ul>
+                      </td>
 					</tr>
 					<tr>
-					  <th scope="row">30 mins</th>
-					  <td>Algorithmic Bias Foundations</td>
-                      <ul>
-                          <li><strong>Motivating examples</strong>. We will present real-world examples where bias can impact recommendation, considering  domains such as music, education, social platforms, and recruiting.</li>
-                          <li><strong>Perspectives impacted by bias</strong>. Bias has an impact on several perspectives such as the economy, law, society, security, technology, and psychology.</li>
-                          <li><strong>Ethical aspects influenced by bias</strong>. Bias can have an impact at the ethical level and lead to issues such as recommendation of inappropriate content, lack of privacy, violation of autonomy and identity, introduction of opacity, lack of fairness, or the compromising of users' social relationships.</li>
-                          <li><strong>Objectives influenced by bias</strong>. We will present recommendation objectives influenced by bias (utility, coverage, diversity, novelty, visibility, exposure) and provide examples of related work.</li>
-                      </ul>
+					  <th scope="row" class="time">30 mins</th>
+					  <td>
+                          Algorithmic Bias Foundations
+                          <ul>
+                              <li><strong>Motivating examples</strong>. We will present real-world examples where bias can impact recommendation, considering  domains such as music, education, social platforms, and recruiting.</li>
+                              <li><strong>Perspectives impacted by bias</strong>. Bias has an impact on several perspectives such as the economy, law, society, security, technology, and psychology.</li>
+                              <li><strong>Ethical aspects influenced by bias</strong>. Bias can have an impact at the ethical level and lead to issues such as recommendation of inappropriate content, lack of privacy, violation of autonomy and identity, introduction of opacity, lack of fairness, or the compromising of users' social relationships.</li>
+                              <li><strong>Objectives influenced by bias</strong>. We will present recommendation objectives influenced by bias (utility, coverage, diversity, novelty, visibility, exposure) and provide examples of related work.</li>
+                          </ul>
+                      </td>
 					</tr>
 					<tr>
-					  <th scope="row">25 mins</th>
-					  <td>Bias through the Pipeline</td>
-                      <ul>
-                          <li><strong>Recommendation pipeline</strong>. We will provide an initial overview of the recommendation pipeline, to characterize how bias can exist at several stages, namely, data acquisition and storage, data preparation, model training, model prediction, model evaluation, and recommendation delivery.</li>
-                          <li><strong>Types of bias associated to the pipeline</strong>. We explore the types of bias that can emerge at different stages of the pipeline, i.e., those associated to the users,  platforms, data collection, data preparation, model exploitation, and model evaluation.</li>
-                      </ul>
+					  <th scope="row" class="time">25 mins</th>
+					  <td>
+                          Bias through the Pipeline
+                          <ul>
+                              <li><strong>Recommendation pipeline</strong>. We will provide an initial overview of the recommendation pipeline, to characterize how bias can exist at several stages, namely, data acquisition and storage, data preparation, model training, model prediction, model evaluation, and recommendation delivery.</li>
+                              <li><strong>Types of bias associated to the pipeline</strong>. We explore the types of bias that can emerge at different stages of the pipeline, i.e., those associated to the users,  platforms, data collection, data preparation, model exploitation, and model evaluation.</li>
+                          </ul>
+                      </td>
 					</tr>
 					<tr>
-					  <th scope="row">30 mins</th>
-					  <td>Discrimination</td>
-                      <ul>
-                          <li><strong>Types of discrimination</strong>. When bias affects users' sensitive attributes, it may lead to discrimination. We present concepts, such as direct/indirect discrimination, its granularity (group, individual, and subgroup discrimination), types of disparity (disparate treatment, impact, and mistreatment).</li>
-                          <li><strong>Definitions of fairness</strong>. We will present definitions of fairness and different classes in which thy can be categorized (equalized odds, equalized opportunity, demographic parity, fairness through (un)awareness, equality of treatment).</li>
-                      </ul>
+					  <th scope="row" class="time">30 mins</th>
+					  <td>
+                          Discrimination
+                          <ul>
+                              <li><strong>Types of discrimination</strong>. When bias affects users' sensitive attributes, it may lead to discrimination. We present concepts, such as direct/indirect discrimination, its granularity (group, individual, and subgroup discrimination), types of disparity (disparate treatment, impact, and mistreatment).</li>
+                              <li><strong>Definitions of fairness</strong>. We will present definitions of fairness and different classes in which thy can be categorized (equalized odds, equalized opportunity, demographic parity, fairness through (un)awareness, equality of treatment).</li>
+                          </ul>
+                      </td>
 					</tr>
 					<tr>
-					  <th scope="row">40 mins</th>
-					  <td>Mitigation Design</td>
-                      <ul>
-                          <li><strong>Bias-aware process pipeline</strong>. Intervention strategies to mitigate algorithmic bias require an analysis of where and how bias might affect the system. We present a pipeline to support mitigation design.</li>
-                          <li><strong>Techniques for bias treatment</strong>. We will present the three main classes of mitigation techniques (pre-, in-, and post-processing), along with examples of solutions proposed for recommender systems.</li>
-                          <li><strong>Real-world applications</strong>. We will present examples of real-world platforms, such as LinkedIn and Spotify, and of their approaches to deal with bias..</li>
-                      </ul>
+					  <th scope="row" class="time">40 mins</th>
+					  <td>
+                          Mitigation Design
+                          <ul>
+                              <li><strong>Bias-aware process pipeline</strong>. Intervention strategies to mitigate algorithmic bias require an analysis of where and how bias might affect the system. We present a pipeline to support mitigation design.</li>
+                              <li><strong>Techniques for bias treatment</strong>. We will present the three main classes of mitigation techniques (pre-, in-, and post-processing), along with examples of solutions proposed for recommender systems.</li>
+                              <li><strong>Real-world applications</strong>. We will present examples of real-world platforms, such as LinkedIn and Spotify, and of their approaches to deal with bias..</li>
+                          </ul>
+                      </td>
 					</tr>
 					<tr>
-					  <th scope="row"><strong>10 mins</strong></th>
+					  <th scope="row" class="time"><strong>10 mins</strong></th>
 					  <td><strong>Questions and Discussion</strong></td>
 					</tr>
 					<tr>
-					  <th scope="row"><strong></strong></th>
+					  <th scope="row" class="time"><strong></strong></th>
 					  <td><strong>Coffee Breakstrong></td>
 					</tr>
 					<tr>
-					  <th scope="row"><strong>150 mins</strong></th>
+					  <th scope="row" class="time"><strong>150 mins</strong></th>
 					  <td><strong>Session II: Hands-on Studies</strong></td>
 					</tr>
 					<tr>
-					  <th scope="row">30 mins</th>
+					  <th scope="row" class="time">30 mins</th>
 					  <td>Recommender Systems in Practice</td>
                       <ul>
                           <li>Data preparation starting from public datasets (i.e., COCO and Movielens datasets).</li>
@@ -230,33 +240,37 @@
                       </ul>
 					</tr>
 					<tr>
-					  <th scope="row"><strong>45 mins</strong></th>
-					  <td>Investigation on Item Popularity Bias</td>
-                      <ul>
-                          <li>Definition and characterization of item popularity biases in interactions and recommendations.</li>
-                          <li>Application of mitigation techniques based on pre-, in-, and post-processing.</li>
-                          <li>Comparison of mitigation techniques based on bias and recommendation utility trade-offs.</li>
-                          <li>Comparison of mitigation techniques on beyond-utility metrics (e.g., coverage, diversity, novelty).</li>
-                      </ul>
+					  <th scope="row" class="time"><strong>45 mins</strong></th>
+					  <td>
+                          Investigation on Item Popularity Bias
+                          <ul>
+                              <li>Definition and characterization of item popularity biases in interactions and recommendations.</li>
+                              <li>Application of mitigation techniques based on pre-, in-, and post-processing.</li>
+                              <li>Comparison of mitigation techniques based on bias and recommendation utility trade-offs.</li>
+                              <li>Comparison of mitigation techniques on beyond-utility metrics (e.g., coverage, diversity, novelty).</li>
+                          </ul>
+                      </td>
 					</tr>
 					<tr>
-					  <th scope="row"><strong>45 mins</strong></th>
-					  <td>Investigation on Item Provider Fairness</td>
-                      <ul>
-                          <li>Association of items to providers and sensitive attributes and characterization of providers representation in the catalog and in the interactions..</li>
-                          <li>Identification of minority providers, both at individual and group level.</li>
-                          <li>Definition and measurement of item provider unfairness on recommendations.</li>
-                          <li>Application of mitigation techniques based on pre-, in-, and post-processing.</li>
-                          <li>Comparison of mitigation techniques based on fairness and recommendation utility trade-offs.</li>
-                          <li>Comparison of mitigation techniques on beyond-utility metrics (e.g., coverage, diversity, novelty).</li>
-                      </ul>
+					  <th scope="row" class="time"><strong>45 mins</strong></th>
+					  <td>
+                          Investigation on Item Provider Fairness
+                          <ul>
+                              <li>Association of items to providers and sensitive attributes and characterization of providers representation in the catalog and in the interactions..</li>
+                              <li>Identification of minority providers, both at individual and group level.</li>
+                              <li>Definition and measurement of item provider unfairness on recommendations.</li>
+                              <li>Application of mitigation techniques based on pre-, in-, and post-processing.</li>
+                              <li>Comparison of mitigation techniques based on fairness and recommendation utility trade-offs.</li>
+                              <li>Comparison of mitigation techniques on beyond-utility metrics (e.g., coverage, diversity, novelty).</li>
+                          </ul>
+                      </td>
 					</tr>
 					<tr>
-					  <th scope="row"><strong>10 mins</strong></th>
+					  <th scope="row" class="time"><strong>10 mins</strong></th>
 					  <td><strong>Open Issues and Research Challenges</strong></td>
 					</tr>
 					<tr>
-					  <th scope="row"><strong>20 mins</strong></th>
+					  <th scope="row" class="time"><strong>20 mins</strong></th>
 					  <td><strong>Questions and Discussion</strong></td>
 					</tr>
 				  </tbody>
