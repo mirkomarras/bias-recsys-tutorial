@@ -50,7 +50,7 @@
           <li><a href="#resources">Material</a></li>
           <li><a href="#organizers">Presenters</a></li>
           <li><a href="#contacts">Contacts</a></li>
-          <li><a href="#objectives">Past Editions</a></li>
+          <li><a href="#editions">Past Editions</a></li>
         </ul>
       </nav><!-- #nav-menu-container -->
     </div>
@@ -59,7 +59,7 @@
   <!--==========================
     Intro Section
   ============================-->
-  <section id="intro">
+  <section id="intro-icdm">
     <div class="intro-container wow fadeIn">
       <h1 class="mb-4 pb-0">Tutorial on<br/> Bias in Personalized Rankings: Concepts to Code</h1>
       <p class="mb-4 pb-0">to be held as part of the <u><a href="https://www.um.org/umap2020/" target="_blank">20th IEEE International Conference on Data Mining (ICDM2020)</a></u></p>
@@ -70,91 +70,83 @@
   <main id="main">
 
     <!--==========================
-    Aims and Scope Section
+    Introduction Section
     ============================-->
     <section id="abstract" class="wow fadeInUp">
 
       <div class="container-fluid">
         <div class="section-header">
-          <h2>Abstract</h2>
-          <p>This tutorial provides a common ground for both researchers and practitioners interested in <strong>data and algorithmic bias</strong> in recommender systems. Guided by real-world
-              examples in various domains, we introduce <strong>problem space and concepts</strong> underlying bias investigation in recommendation. Then, we practically show two <strong>
-              use cases</strong>, addressing biases that lead to disparate exposure of items based on their popularity and to systematically discriminate against a legally-protected class of
-              users. Finally, we cover a range of techniques for <strong>evaluating and mitigating the impact</strong> of these biases on the recommended lists, including pre-, in-, and
-              post-processing procedures. This tutorial is accompanied by Jupyter notebooks putting into practice core concepts in data from real-world platforms.</p>
+          <h2>Introduction</h2>
+          <p>This tutorial aims to provide the ICDM community with a comprehensive survey on data and algorithmic bias in personalized rankings, with a focus on state-of-the-art recommendation algorithms and systems. First, we present conceptual fundamentals on bias based on the existing literature, including a broad discussion on real-world perspectives, ethical aspects, and system's objectives impacted by this phenomenon. Then, we dive deeper into concepts, techniques, metrics, and frameworks that allow to detect, understand, and mitigate bias along the algorithm design pipeline, by presenting the theoretical foundations behind state-of-the-art approaches and their implementations. We showcase hands-on examples of pre-, in-, and post-processing bias mitigation techniques by means of open-source tools and public datasets, engaging tutorial participants in mitigation design and in articulating impacts on stakeholders. Finally, we shed light on how the research in this novel and fast-growing field has opened challenges and opportunities for communities such as ICDM.</p>
         </div>
       </div>
 
     </section>
-	
+
+    <!--==========================
+    Rationale Section
+    ============================-->
     <section id="scope" class="wow fadeInUp section-with-bg" style="padding: 60px 0 30px 0;">
 
       <div class="container-fluid">
         <div class="section-header">
-          <h2 style="margin: 10px auto 30px auto;">Scope</h2>
-            <p>Recommender systems support individuals at filtering the overwhelming alternatives our daily life offers. However, while learning patterns from historical data, such systems may
-                <strong>capture biases</strong> conveyed by the underlying data in terms of imbalances and inequalities. In many cases, recommender systems can even end up to <strong>emphasize
-                these biases</strong> in the results they provide, leading to unintended <strong>ethical and societal consequences</strong>.</p>
-            <p>Experiments conducted under <strong>offline settings</strong> with historical data are being frequently used in this field. However, they often fail in providing evidence on
-                biased situations hidden in the recommended lists, as their main focus has been for years related to the <strong>accuracy perspective only</strong>. With this in mind,
-                recent works showed that some recommenders tend to focus on a limited part of the item catalog mainly due to a <strong>popularity bias</strong>. Other studies demonstrated that
-                recommenders may generate a category-wise bias due to imbalanced rating distributions across categories. Biased patterns may also impact on users characterized by a specific common
-                sensitive attribute or on users as individuals. With the ever-increasing adoption of recommendation services, it is therefore essential for researchers and practitioners to understand
-                how to <strong>face biases and mitigate their impact</strong> on these systems.</p>
-            <p>Even though biases and their consequences are receiving more and more attention by the machine learning community, the <strong>complex ecosystems</strong> wherein recommender systems are
-                being integrated and the <strong>specificity</strong> of the modern approaches are requiring solutions tailored for the recommendation task. This tutorial is a natural continuation of our
-                work in this field, and will allow the UMAP community to delve into this area even more, with concrete and practical expertise. We cover the components of modern recommender systems based on
-                <strong>neural collaborative filtering</strong>, including how they work and their training and testing processes, with pointers to relevant literature. Then, we introduce problem space
-                and definitions of bias in recommendation, and we describe countermeasures at different levels, along with their limitations.</p>
+          <h2 style="margin: 10px auto 30px auto;">Rationale</h2>
+
+          <p>Big Data, Artificial Intelligence, and High-Processing Computing are transforming our society more and more. Intelligent systems are becoming pervasive in our daily lives and shaping both our online and onlife experience, from search to recommendations. Over the last few years, investigating the potential consequences of the (semi-)automatic decision-making support provided by intelligent systems has become a topic of primary relevance. For instance, Amazon ended up to scrap its recruiting system, because it took sexist decisions. Hence, given the increasing adoption of systems empowered with AI capabilities, it is crucial to ensure that their decisions do not lead to biased or even discriminatory outcomes.</p>
+
+          <p>Over the technologies getting attention in recent years, ranking and recommendation systems are playing a key role in today's online platforms, finally influencing how and what information individuals access. However, they can create biases which may lead to treatment disparity and filter bubbles for information seekers. These systems are trained on historical data, which often conveys imbalances and inequalities. Such patterns might be captured and emphasized in the results these algorithms provide to users, creating position and exposure biases and often providing unfair results. This happens when algorithms systematically discriminate users as individuals or as belonging to a legally-protected class.</p>
+
+          <p>Given that bias is becoming a threat to information seeking and decision-making processes, the capability to uncover, characterize, and counteract biases, while preserving the effectiveness of ranking and recommendation systems, is proving to be prominent and timely~\cite{DBLP:conf/kdd/BirdHKKM19,DBLP:journals/corr/abs-1901-04730}. Controlling the effects generated by popularity bias on the quality of the results, supporting consumers and providers with fair recommendations, and providing transparent results are examples of current challenges. Even though biases and their consequences are receiving more and more attention by the machine learning community, the complex ecosystems wherein recommender systems stand and the specificity of the modern approaches are requiring solutions tailored for the recommendation task.</p>
+
+          <p>Bias in personalized rankings is becoming a critical research problem in current AI research and development. At the core of the problem is to study the design space of bias issues, gaining insights on how these systems work and why they may fail to deliver less biased and unfair results. The research on this topic should at least include three key components:</p>
+
+          <ul>
+              <li>study the interdisciplinary concepts and problem space;</li>
+              <li>formulate and design a bias-aware algorithmic pipeline;</li>
+              <li>materialize, understand, and mitigate the effects of bias. </li>
+          </ul>
+
+          <p>The proposed tutorial is hence organized around these three directions, allowing the ICDM community to delve into this area, with concrete and practical expertise. Specifically, our tutorial will cover the foundations of algorithmic bias of and how it can be assessed and mitigated in ranking and recommender systems, by presenting an overview of the existing literature. Since our hands-on use cases will be focused on state-of-the-art recommenders and we assume not all the audience interested in societal issues might be familiar with this class of algorithms, we start the second session with a brief overview on modern recommendation techniques based on collaborative filtering, with pointers to relevant literature and with an introductory notebook presenting possible implementations. We will continue our tutorial by putting the theory we presented in the first slot into practice, and present how to assess and mitigate bias in item recommendation. Specifically, we will consider two use-case scenarios in which bias (i) comes from data distribution <strong>popularity bias</strong> and (ii) is associated to protected attributes of item providers <strong>provider fairness</strong>.</p>
+
+          <p>This tutorial provides attendees with a novel perspective of inspecting personalized rankings, enabling them to consider beyond-accuracy perspectives, in state-of-the-art collaborative algorithms. The algorithmic approaches presented would help not only academic researchers but also industrial practitioners to better develop systems that tackle bias constraints.</p>
+
         </div>
       </div>
 
     </section>
+
+    <!--==========================
+    Target Audience Section
+    ============================-->
 	
     <section id="audience" class="wow fadeInUp" style="padding: 60px 0 30px 0;">
 
       <div class="container-fluid">
         <div class="section-header">
-          <h2>Audience</h2>
-            <p>This tutorial will be particularly useful for early-stage researchers and practitioners. Intermediate and experienced figures who work on user modeling and personalization
-                techniques will also find handy and practical content to deepen their knowledge in data and algorithmic bias. Participants who are not familiar with modern collaborative
-                filtering and recommender systems in general will benefit from an introductory part including foundations and key concepts on such topics. No prior knowledge on data and
-                algorithmic bias by attendees is assumed in order to attend this tutorial. </p>
+          <h2>Target Audience</h2>
+
+          <p>This tutorial is accessible to researchers, industry technologists and practitioners\footnote{Basic knowledge of Python programming and of quite common libraries, such as Pandas and NumPy, is preferred but not strictly necessary.}. For people not familiar with rankings, this tutorial covers  necessary background material. No prior knowledge on biases is assumed.</p>
+
+          <p>One aspect relevant from the outline is that bias is a highly interdisciplinary topic, touching on several dimensions beyond algorithms. Hence, our tutorial is of interest for an interdisciplinary audience attending ICDM, with different backgrounds.</p>
+
+          <p>After this tutorial, attendees will be able to understand key aspects of bias in personalized rankings, materialize biases into underlying systems, play with mitigation and articulate impacts on stakeholders, identify challenges and opportunities.</p>
+
         </div>
       </div>
 
     </section>
 
     <!--==========================
-    Keynote Section
-    ============================-->
-    <section id="objectives" class="wow fadeInUp section-with-bg">
-
-      <div class="container-fluid">
-        <div class="section-header">
-          <h2>Objectives</h2>
-            <p>This tutorial will aim to:</p>
-              <ul>
-                <li>Raise awareness on the <strong>importance</strong> and the <strong>relevance</strong> of considering data and algorithmic bias issues in recommendation.</li>
-                <li>Play with recommendation pipelines and conduct <strong>exploratory analysis</strong> aimed at uncovering sources of bias along them.</li>
-                <li>Showcase approaches that <strong>mitigate bias</strong> along with the recommendation pipeline and assess their influence on stakeholders.</li>
-                <li>Provide an overview on the <strong>current trends and challenges</strong> in bias-aware research and identify new research directions.</li>
-              </ul>
-        </div>
-      </div>
-
-    </section>
-
-    <!--==========================
-    Program Section
+    Outline Section
     ============================-->
     <section id="structure" class="wow fadeInUp">
 
       <div class="container-fluid">
         <div class="section-header">
-          <h2>Structure</h2>
+          <h2>Outline</h2>
 
-		  <p><stronng>All times are displayed in conference local time (UTC+00:00)</stronng></p>
+          <p>The ongoing worldwide COVID-19 situation pushed ICDM 2020 organizers to make the conference completely virtual.</p>
+
 		  <div style="margin: 10px auto 30px auto; width: 50%;">
 			  <table class="table">
 				  <thead>
@@ -165,48 +157,107 @@
 				  </thead>
 				  <tbody>
 					<tr>
-					  <th scope="row"><strong>10:00 - 10:10</strong></th>
-					  <td><strong>Welcome Message and Connection Setup</strong></td>
+					  <th scope="row"><strong>5 mins</strong></th>
+					  <td><strong>Welcome and Presenters' Introduction</strong></td>
 					</tr>
 					<tr>
-					  <th scope="row"><strong>10:10 - 11:30</strong></th>
+					  <th scope="row"><strong>150 mins</strong></th>
 					  <td><strong>Session I: Foundations</strong></td>
 					</tr>
 					<tr>
-					  <th scope="row">10:10 - 10:20</th>
+					  <th scope="row">10 mins</th>
 					  <td>Recommendation Principles</td>
+                      <ul>
+                          <li><strong>Recommendation principles</strong>. To introduce the problems associated to algorithmic bias, we will present the recommendation task as the  generation of the most effective personalized ranking for a user, as in modern recommender systems.</li>
+                          <li><strong>Multi-sided recommendation aspects</strong>. Recommender systems have an impact on multiple actors, namely consumers, providers, system's owners. We will present these actors and the phases of the recommendation process where they  have a role (design, algorithm, and evaluation).</li>
+                      </ul>
 					</tr>
 					<tr>
-					  <th scope="row">10:20 - 11:30</th>
-					  <td>Data and Algorithmic Bias Foudamentals</td>
+					  <th scope="row">30 mins</th>
+					  <td>Algorithmic Bias Foundations</td>
+                      <ul>
+                          <li><strong>Motivating examples</strong>. We will present real-world examples where bias can impact recommendation, considering  domains such as music, education, social platforms, and recruiting.</li>
+                          <li><strong>Perspectives impacted by bias</strong>. Bias has an impact on several perspectives such as the economy, law, society, security, technology, and psychology.</li>
+                          <li><strong>Ethical aspects influenced by bias</strong>. Bias can have an impact at the ethical level and lead to issues such as recommendation of inappropriate content, lack of privacy, violation of autonomy and identity, introduction of opacity, lack of fairness, or the compromising of users' social relationships.</li>
+                          <li><strong>Objectives influenced by bias</strong>. We will present recommendation objectives influenced by bias (utility, coverage, diversity, novelty, visibility, exposure) and provide examples of related work.</li>
+                      </ul>
 					</tr>
 					<tr>
-					  <th scope="row"><strong>11:30 - 12:00</strong></th>
-					  <td><strong>Zoom Breakout Room + Q&A</strong></td>
+					  <th scope="row">25 mins</th>
+					  <td>Bias through the Pipeline</td>
+                      <ul>
+                          <li><strong>Recommendation pipeline</strong>. We will provide an initial overview of the recommendation pipeline, to characterize how bias can exist at several stages, namely, data acquisition and storage, data preparation, model training, model prediction, model evaluation, and recommendation delivery.</li>
+                          <li><strong>Types of bias associated to the pipeline</strong>. We explore the types of bias that can emerge at different stages of the pipeline, i.e., those associated to the users,  platforms, data collection, data preparation, model exploitation, and model evaluation.</li>
+                      </ul>
 					</tr>
 					<tr>
-					  <th scope="row"><strong>12:00 - 14:00</strong></th>
-					  <td><strong>Session II: Hands-on Case Studies</strong></td>
+					  <th scope="row">30 mins</th>
+					  <td>Discrimination</td>
+                      <ul>
+                          <li><strong>Types of discrimination</strong>. When bias affects users' sensitive attributes, it may lead to discrimination. We present concepts, such as direct/indirect discrimination, its granularity (group, individual, and subgroup discrimination), types of disparity (disparate treatment, impact, and mistreatment).</li>
+                          <li><strong>Definitions of fairness</strong>. We will present definitions of fairness and different classes in which thy can be categorized (equalized odds, equalized opportunity, demographic parity, fairness through (un)awareness, equality of treatment).</li>
+                      </ul>
 					</tr>
 					<tr>
-					  <th scope="row">12:00 - 12:15</th>
+					  <th scope="row">40 mins</th>
+					  <td>Mitigation Design</td>
+                      <ul>
+                          <li><strong>Bias-aware process pipeline</strong>. Intervention strategies to mitigate algorithmic bias require an analysis of where and how bias might affect the system. We present a pipeline to support mitigation design.</li>
+                          <li><strong>Techniques for bias treatment</strong>. We will present the three main classes of mitigation techniques (pre-, in-, and post-processing), along with examples of solutions proposed for recommender systems.</li>
+                          <li><strong>Real-world applications</strong>. We will present examples of real-world platforms, such as LinkedIn and Spotify, and of their approaches to deal with bias..</li>
+                      </ul>
+					</tr>
+					<tr>
+					  <th scope="row"><strong>10 mins</strong></th>
+					  <td><strong>Questions and Discussion</strong></td>
+					</tr>
+					<tr>
+					  <th scope="row"><strong></strong></th>
+					  <td><strong>Coffee Breakstrong></td>
+					</tr>
+					<tr>
+					  <th scope="row"><strong>150 mins</strong></th>
+					  <td><strong>Session II: Hands-on Studies</strong></td>
+					</tr>
+					<tr>
+					  <th scope="row">30 mins</th>
 					  <td>Recommender Systems in Practice</td>
+                      <ul>
+                          <li>Data preparation starting from public datasets (i.e., COCO and Movielens datasets).</li>
+                          <li>Model definition (e.g., user/item embeddings, layers stacking) and  training (e.g., epochs, loss, optimizer, learning rate)</li>
+                          <li>User-item relevance matrix computation from a pre-trained model (e.g., model load, predictions).</li>
+                          <li>Model evaluation oriented to utility (e.g., NDCG, beyond-accuracy metrics).</li>
+                      </ul>
 					</tr>
 					<tr>
-					  <th scope="row"><strong>12:15 - 12:40</strong></th>
+					  <th scope="row"><strong>45 mins</strong></th>
 					  <td>Investigation on Item Popularity Bias</td>
+                      <ul>
+                          <li>Definition and characterization of item popularity biases in interactions and recommendations.</li>
+                          <li>Application of mitigation techniques based on pre-, in-, and post-processing.</li>
+                          <li>Comparison of mitigation techniques based on bias and recommendation utility trade-offs.</li>
+                          <li>Comparison of mitigation techniques on beyond-utility metrics (e.g., coverage, diversity, novelty).</li>
+                      </ul>
 					</tr>
 					<tr>
-					  <th scope="row"><strong>12:40 - 13:10</strong></th>
+					  <th scope="row"><strong>45 mins</strong></th>
 					  <td>Investigation on Item Provider Fairness</td>
+                      <ul>
+                          <li>Association of items to providers and sensitive attributes and characterization of providers representation in the catalog and in the interactions..</li>
+                          <li>Identification of minority providers, both at individual and group level.</li>
+                          <li>Definition and measurement of item provider unfairness on recommendations.</li>
+                          <li>Application of mitigation techniques based on pre-, in-, and post-processing.</li>
+                          <li>Comparison of mitigation techniques based on fairness and recommendation utility trade-offs.</li>
+                          <li>Comparison of mitigation techniques on beyond-utility metrics (e.g., coverage, diversity, novelty).</li>
+                      </ul>
 					</tr>
 					<tr>
-					  <th scope="row"><strong>13:10 - 13:20</strong></th>
-					  <td><strong>Research Challenges and Emerging Opportunities</strong></td>
+					  <th scope="row"><strong>10 mins</strong></th>
+					  <td><strong>Open Issues and Research Challenges</strong></td>
 					</tr>
 					<tr>
-					  <th scope="row"><strong>13:20 - 14:00</strong></th>
-					  <td><strong>Open Discussion + Q&A</strong></td>
+					  <th scope="row"><strong>20 mins</strong></th>
+					  <td><strong>Questions and Discussion</strong></td>
 					</tr>
 				  </tbody>
 			  </table>
@@ -217,27 +268,23 @@
     </section>
 
     <!--==========================
-    Important Dates Section
+    Material Section
     ============================-->
     <section id="resources" class="wow fadeInUp section-with-bg">
 
       <div class="container-fluid">
         <div class="section-header">
-          <h2>Resources</h2>
-          <ul>
-            <li><a href="https://bit.ly/BiasRecSysTutorial-Presentation-Slides">Slides</a></li>
-            <li><a href="https://bit.ly/BiasRecSysTutorial-Github">Github</a></li>
-            <li><a href="https://bit.ly/BiasRecSysTutorial-Notebook1">Notebook 1: Design and evaluation of a recommendation algorithm</a></li>
-            <li><a href="https://bit.ly/BiasRecSysTutorial-Notebook2">Notebook 2: Investigation on item popularity bias</a></li>
-            <li><a href="https://bit.ly/BiasRecSysTutorial-Notebook3">Notebook 3: Investigation on item provider fairness</a></li>
-          </ul>
+          <h2>Material</h2>
+
+          <p>Lecture slides, Github repository, and Jupyter notebooks will be made available to attendees before the tutorial.</p>
+
         </div>
       </div>
 
     </section>
 
     <!--==========================
-    Committee Section
+    Presenters Section
     ============================-->
     <section id="organizers" class="wow fadeInUp">
 
