@@ -28,6 +28,10 @@ table .time {
     text-align: right;
 }
 
+.table thead th {
+    min-width: 100px;
+}
+
 h1,
 h2,
 h3,
@@ -41,17 +45,25 @@ h6 {
   color: #0e1b4d;
 }
 
-#scope ul, #structure ul, #editions ul {
+#scope ul, #editions ul {
     margin-top: 0;
     margin-bottom: 1rem;
     margin: 10px auto 30px auto;
     width: 50%;
 }
 
-#scope ul > li, #structure ul > li, #editions ul > li {
+#scope ul > li, #editions ul > li {
     font-size: 18px;
     font-weight: 500;
     color: #000;
+}
+
+#structure ul {
+
+}
+
+#structure ul > li {
+
 }
 
 .main-page {
