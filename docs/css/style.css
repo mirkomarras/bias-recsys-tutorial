@@ -437,6 +437,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 #intro {
   width: 100%;
   height: 80vh;
+  background:   url(https://upload.wikimedia.org/wikipedia/commons/f/f7/View_of_Sorrento.jpg) top center;
   background-size:     cover;
   background-repeat:   no-repeat;
   background-position: center center;
